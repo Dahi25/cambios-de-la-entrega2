@@ -13,8 +13,7 @@ require('./helpers/helpers')
  const dirPartials=path.join(__dirname ,"../template/partials")
 
  //Static
-app.use(express.static(dirPublic))
-
+ app.use(express.static(dirPublic))
 //BodyParser
 app.use(bodyParser.urlencoded({extended : false}))
 
@@ -29,6 +28,19 @@ app.get('/', function (req, res) {
         titulo: 'Inicio'
     })
   })
+  app.get('/matricular', function (req, res){
+    res.render('index', {
+      titulo:'inscripcion',
+      idC: req.body.idCurso,
+      nombreEst: req.body.nombreEstudiante,
+      cedula:req.body.Cedula,
+      correo:req.body.email,
+      modalidad:req.body.modalidad,
+      intensidadh:req.body.intensidad_horaria,
+      descurso:req.body.descripcioncurso
+      
+  })
+  });
   app.post('/matricular', function (req, res){
     res.render('index', {
       titulo:'inscripcion',
@@ -43,19 +55,19 @@ app.get('/', function (req, res) {
   })
   });
 
-  app.post('/cursos', function (req, res){
-    res.render('index', {
+  app.post('/cursos2', function (req, res){
+    console.log("esta bueno " + req.body.idCurso)
+    res.render('cursos2', {
       titulo:'Registro de curso',
       idCu: req.body.idCurso,
       nombreCu: req.body.nombre,
       duracionCu:req.body.duracion,
       precioCu:req.body.precio,
       modalidadCu:req.body.modalidad,
-      intensidadh:req.body.inth,
-      descrip:req.body.descripcion
+     intensidadh:req.body.inth,
+     descrip:req.body.descripcion
       
   })
-  console.log("funciona " +req.body.idCurso)
   });
   
   app.get('/cursos2', function(req, res) {
@@ -70,23 +82,22 @@ app.get('/', function (req, res) {
       descurso:req.body.descripcion
     })
   });
-  
-  app.get('/descripcion', function (req, res){
-    res.render('descripcion', {
-      titulo:'Descripcion de los cursos'		
+    app.get('/eliminar1',function(req,res){
+      res.render('eliminar1',{
+        titulo:'Eliminando',
+        idCu: req.body.idCurso
+    })
+  }) 
+    app.post('/eliminar1',function(req,res){
+      res.render('eliminar1',{
+        titulo:'Eliminando',
+        idCu: req.body.idCurso      
+      
     })
   })
-  
-  app.post('/descripcion', function (req, res){
-    res.render('descripcion', {
-      titulo:'Descripcion de los cursos',
-      id: req.body.id,
-      nombre: req.body.nombre,
-      intensidadh:req.body.inth,
-      descurso:req.body.descripcion
-  })
-     })
-  app.listen(3000, () => {
+
+   app.listen(3000, () => {
 	console.log ('Servidor en el puerto 3000')
+   
 })
- 
+  

@@ -3,17 +3,19 @@ listaCursos= [];
 
 const crear = (cursos) => {
 	verCursos ();
+	console.log(cursos)
 	let Est = {
-		id: Est.id,
+		id:cursos.id,
 		nombre: Est.nombre,
 		duracion: Est.duracion,
         precio:Est.precio,
 		modalidad:Est.modalidad,
-		descripcion:Est.descripcion,
+	    descripcion:Est.descripcion,
 		intensidadh:Est.inth
 	}
-	let duplicado = listaCursos.find(id => nombre.id == Est.id )
-	if (duplicado){
+}
+	//let duplicado = listaCursos.find(id => nombre.id == Est.id )//
+	/*if (duplicado){
 		console.log('ya existe')
 	}
 	else {
@@ -21,10 +23,8 @@ const crear = (cursos) => {
 	console.log(listaCursos)
 	guardar()
 	}
-}
-
-
-
+}*/
+//guardar()//
 const guardar = () => {
 	let datos = JSON.stringify(listaCursos);
 	fs.writeFile('src/Cursos.json', datos, (err)=>{
@@ -32,50 +32,6 @@ const guardar = () => {
 		console.log('Archivo fue creado con éxito')
 	})
 }
-
-const ver = () => {
-	verCursos()
-	listaCursos.forEach(Est=> {
-		console.log("El id es " + Est.id)
-		console.log("el nombre  del curso es " + Est.nombre)
-		console.log("la duracion es " + Est.duracion)
-        console.log("el precio del curso es" + Est.precio)
-		console.log("la modalidad del curso es" + Est.modalidad)
-		console.log("la descripcion del curso es" + Est.descripcion)
-		console.log("la intensidad del curso es" + Est.inth)
-		console.log("\n")
-	})	
-}
-/*
-const actualizar = (cursos) => {
-	verCursos()
-	console.log (cursos)
-	let descubrir = listaCursos.find(buscar => buscar.id.nombre == Est.id)
-	if (!descubrir){
-		console.log("no existe el curso ni el id")
-	}
-	else {
-		if (Est.prueba != 'no') encontrar['nombreEst'] = Est.prueba
-		if (Est.Cedula != 'no') encontrar['Cedula'] = Est.Cedula
-		//console.log(listaCursos)
-		//console.log(encontrar)
-		//console.log(curso.nombre)
-		guardar()
-	}
-}
-*/
-const eliminar = (id) => {
-	ver()
-	let nuevo = listaCursos.filter(id => id.id!= id)
-	if (nuevo.length == listaCursos.length){
-		console.log ("el id ya pertenece a otro curso")
-	}
-	else {
-	listaCursos = nuevo
-	guardar()
-	}
-}
-
 //funcion para matricularce//
 const matricular=(aspirante) =>{
 	if (aspirante){
@@ -116,43 +72,71 @@ const matricular=(aspirante) =>{
 	}
 };
 
-//funcion para matricularce//
+
+//funcion para  crear un curso nuevo//
 const crearCurso=(curso) =>{
-	/*console.log("funciona " +curso)*/
+	console.log("funciona " +curso.idCurso)
 	if (curso){
 		let cur= {
-			id:curso.idCu,
-		    nombreCurso:curso.nombreCu,
-			duracionCurso:curso.duracionCu,
-			precioCurso:curso.precioCu,
-			modalidadCurso:curso.modalidadCu,
-			intensidadCurso:curso.intensidadh,
-			descripcion:curso.descrip
+			id:curso.idCurso,
+		    nombre:curso.nombreCurso,
+			duracion:curso.duracionCurso,
+			precio:curso.precioCurso,
+			modalidad:curso.modalidadCurso,
+			inth:curso.intensidadCurso,
+			descripcion:curso.descripcionCurso
         }
-		listacurso = require ('./Cursos.json')
-		
-		listacurso.push(cur)
-        let resultado= `<div class='alert alert-success alert-dismissible fade show' role='alert'>  matriculad@<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
-		let datos = JSON.stringify(listacurso);
+		console.log(cur)
+		listaCursos=require('./Cursos.json')
+		listaCursos.push(cur)
+		console.log(listaCursos)
+        let resultado=`<div class='alert alert-success alert-dismissible fade show' role='alert'> se ha registrado el curso  correctamente<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+		let datos = JSON.stringify(listaCursos);
 		fs.writeFile('src/Cursos.json', datos, (err)=>{
 		if (err) throw (err);
 			console.log('El curso fue creado con éxito')
 		})
-		return resultado
+		resultado="correcto"
 	}else{
 	resultado=`<div class='alert alert-danger alert-dismissible fade show' role='alert'>ese id pertenece a un curso no disponible<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
 	}
+	return resultado
 };
-
+//para eliminar cursos//
+       const eliminar = (id) => {
+			console.log("holi"+idCu)
+			//verCursos();//
+			listaCursos = require ('./Cursos.json')
+			let nuevo = listaCursos.filter(id=> id.idCu!=id.idCu)
+			if (nuevo.length == listaCursos.length){
+				return respuesta=`<div class='alert alert-danger alert-dismissible fade show' role='alert'>no se ha encontrado ese id<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+			}
+			else {
+			listaCursos = nuevo
+			guardar()
+		     respuesta=`<div class='alert alert-succes alert-dismissible fade show' role='alert'>${id}se ha eliminado el curso<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+			}
+			return eliminar
+		}
+		/*let nuevo=listaCursos.filter(elemento1=>elemento1.idCurso!=Est.id)
+     if(nuevo.length==listaCursos.length){
+		   return respuesta=`<div class='alert alert-succes alert-dismissible fade show' role='alert'>se ha registrado correctamente el curso<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+	   }
+	   else{
+	   listaCursos=nuevo
+	   guardar()
+	}
+}
+*/
 
 
 module.exports = {
 	crear,
-	ver	,
-	//verCursos,//
-	//actualizar//
-	eliminar,
+	
+	guardar,
+	
 	matricular,
 	//inscripcion//
-	crearCurso
-}
+	crearCurso,
+	eliminar
+};

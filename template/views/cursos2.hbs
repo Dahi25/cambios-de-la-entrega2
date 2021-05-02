@@ -2,7 +2,7 @@
 {{>header}}
 <h1> Lista de cursos</h1>
 {{{verCursos}}}
-<form action="/cursos" method="post">
+<form action="/cursos2" method="post">
 <h2>Registrar curso</h2>
 <label for="id">Id</label>
 <input type="text" name="idCurso">
@@ -27,10 +27,9 @@
 	<option value="6 Horas">6 Horas</option>
 </select>
 <label for="intens">Descripción</label>
-<input type="text" name="descripcion">
-
+<input type="text" name="descripcion"> 
 <input type="submit">
 </form>
-	{{{listaCursos}}}
+	
 	{{{crear_Curso idCu nombreCu duracionCu precioCu modalidadCu intensidadh descrip}}}
 	{{>footer}}

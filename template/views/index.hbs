@@ -1,8 +1,7 @@
 
 
 {{>header}}
-
-  <h1> Bienvenidos a los cursos de educacion continua TdeA </h1> 
+<h1> Bienvenidos a los cursos de educacion continua TdeA </h1> 
  
   <h1> Elige un curso y matriculate </h1>
   <form action="/matricular" method="post">
@@ -12,7 +11,6 @@
         
     <div class="col-sm">
        <label > Cedula</label>
-     <!--- {{{listarCursos}}}!--->
      <input type="number" name="Cedula">
       </div>
     <div class="col-sm">
@@ -40,8 +38,8 @@
 <select class="form-select form-select-lg mb-3" style="height:58px;" aria-label=".form-select-lg example" name="intensidad_horaria">
    <option>intensidad horaria</option>
    <option value="7hrs">7 hrs</option>
-   <option value="7hrs">7hrs</option>
-   <option value="7hrs">7hrs</option>
+   <option value="7hrs">6hrs</option>
+   <option value="7hrs">5hrs</option>
    </select>
    
    <br>
@@ -65,29 +63,31 @@
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body" >No se requiere conocimientos previos</div>
-    </div>
+      <div class="accordion-body" >Curso  intermedio
+           </div>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        php id3
+        javascript
       </button>
+      
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Se requiere conocimientos previos.</div>
+      <div class="accordion-body">Curso intermedio.</div>
     </div>
   </div>
 </div>
 <select class="form-select form-select-lg mb-3" style="height:58px;" aria-label=".form-select-lg example" name="descripcioncurso">
    <option>Selecciona la descripcion del curso elegido</option>
    <option value="Se requiere conocimientos previos">Se requiere conocimientos previos id1</option>
-   <option value="No se requiere conocimientos previos">No se requiere conocimientos previos id2</option>
-   <option value="Se requiere conocimientos previos">Se requiere conocimientos previos id3</option>
+   <option value="Curso intermedio">Curso intermedio id2</option>
+   <option value="Curso intermedio">Curso intermedio id3</option>
    </select>
 <input type="submit" class='form-control btn btn-success'>
 </form>
 
+ 
  {{{verCursos}}}
   {{{registrar idC nombreEst cedula correo modalidad intensidadh descurso}}}
  {{>footer}}
